@@ -1,0 +1,63 @@
+<div class="container-fluid bg-image">
+    <div class="row">
+        <div class="login-wraper">
+            <div class="hidden-xs">
+                <img src="assets/images/login.jpg" alt="">
+            </div>
+            <div class="banner-text hidden-xs">
+                <div class="line"></div>
+                <div class="b-text">
+                    Watch <span class="color-active">millions<br> of</span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">os</span> for free.
+                </div>
+                <div class="overtext">
+                    Over 6000 videos uploaded Daily.
+                </div>
+            </div>
+            <div class="login-window">
+                <div class="l-head">
+                    Sign Up for Free
+                </div>
+                <div class="l-form">
+                    <form name="registerationForm">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" required ng-model="email">
+                            <span ng-show="registerationForm.email.$touched && registerationForm.email.$invalid" class="red">A valid email is required.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">Name</label>
+                            <input type="text" class="form-control" id="exampleInputName" name="email" required ng-model="name">
+                            <span ng-show="registerationForm.name.$touched && registerationForm.name.$invalid" class="red">Name is required.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" ng-keyup="runCheck()" ng-model="password" required name="password" maxlength="10">
+                            <span ng-show="registerationForm.password.$touched && !minLength" class="red">Your password must be a minimum of 8 characters</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">Re-type Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" ng-model="passwordTwo" required ng-blur="checkPasswords()" ng-keyup="checkPasswords()" name="passwordTwo" maxlength="10">
+                            <span ng-show="registerationForm.passwordTwo.$dirty && passwordTwo !== password" class="red">Passwords do not match</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7"><button type="button" class="btn btn-cv1" ng-disabled="!registerationForm.$valid || !passwordsMatch" ng-click="signUp()">Sign Up</button></div>{{ registerationForm.$valid }} {{ passwordsMatch}}
+                            <div class="hidden-xs">
+                                <div class="col-lg-1 ortext">or</div>
+                                <div class="col-lg-4 signuptext"><a href="#!login">Log In</a></div>
+                            </div>
+                        </div>
+                        <div class="row hidden-xs">
+                            <div class="col-lg-12 forgottext">
+                                <a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>
+                            </div>
+                        </div>
+                        <div class="visible-xs text-center mt-30">
+                            <span class="forgottext"><a href="#">Already have an account?</a></span>
+                            <span class="signuptext"><a href="#">Login here</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

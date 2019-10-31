@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.png">
+    <title>Arabic Discovery | Home Page</title>
+    <!-- Bootstrap core CSS -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/font-circle-video.css" rel="stylesheet">
+    <link href="assets/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="assets/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- font-family: 'Hind', sans-serif; -->
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+    <style>
+        input.ng-invalid {
+            border: 2px solid rgb(238, 26, 26) !important;
+        }
+        
+        .red {
+            color: rgb(238, 26, 26) !important;
+        }
+        
+        input.ng-valid {
+            border: 2px solid rgb(117, 230, 117) !important;
+        }
+        
+        input.ng-untouched {
+            border: 2px solid rgb(117, 230, 117) !important;
+        }
+    </style>
+
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-route.js"></script>
+    <script src="assets/js/ngStorage.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="appController">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-4 visible-xs">
+                            <a href="#" class="btn-menu-toggle"><i class="cv cvicon-cv-menu"></i></a>
+                        </div>
+                        <div class="col-lg-4 col-md-3 col-xs-4">
+                            <a class="navbar-brand" href="#/!">
+                                <img src="assets/images/logo.png" alt="Project name" class="top-logo">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-4">
+                            <form action="search.html" method="post">
+                                <div class="topsearch">
+                                    <i class="cv cvicon-cv-cancel topsearch-close"></i>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
+                                        <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>/
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
+                                                <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
+                                                <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
+                                                <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
+                                                <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-2 col-md-3 hidden-xs">
+                            <div class="selectuser pull-right">
+                                <div class="btn-group pull-right dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Profile
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#!login">Profile</a></li>
+                                        <li><a href="signup.html">Account Setting</a></li>
+                                        <li><a href="signup.html">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="avatar pull-right">
+                                <img src="assets/images/avatar.png" alt="avatar" />
+                                <span class="status"></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /logo -->
+    <div class="mobile-menu">
+        <a href="#" class="mobile-menu-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-user">
+                <div class="mobile-menu-user-img">
+                    <img src="assets/images/ava11.png" alt="">
+                </div>
+                <div class="btn-group pull-right dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Profile <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="login.html">Profile</a></li>
+                        <li><a href="signup.html">Account Setting</a></li>
+                        <li><a href="signup.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="btn mobile-menu-upload hidden-xs">
+                <i class="cv cvicon-cv-upload-video"></i>
+                <span>Upload Video</span>
+            </a>
+            <div class="mobile-menu-list">
+                <ul>
+                    <li><a href="#/!"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+                    <li>
+                        <a href="#"><i class="fa fa-flag" aria-hidden="true"></i> Dialects <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="mobile-menu-categories">
+                            <li>
+                                <a href="#!dialect/Egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/Algerian"><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#!resource"><i class="fa fa-envelope-o" aria-hidden="true"></i> Resources</a></li>
+                    <li>
+                        <!-- <a href="community.html"> <i class="fa fa-users" aria-hidden="true"></i> Community</a> -->
+                    </li>
+                    <li><a href="#!blog"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
+                    <li><a href="#!faq"><i class="fa fa-question-circle" aria-hidden="true"></i> FAQ</a></li>
+                    <li><a href="#!contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
+                    <li><a href="#!upgrade"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade</a></li>
+                </ul>
+            </div>
+            <a href="login.html" class="btn mobile-menu-logout">Log out</a>
+        </div>
+    </div>
+    <div class="navbar-container2 hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <ul class="list-inline menu hidden-xs">
+                        <li><a href="#/!"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+                        <li class="color-active">
+                            <a href="#"><i class="fa fa-flag" aria-hidden="true"></i> Dialects <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <ul>
+                                <li>
+                                    <a href="#!dialect/Egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/Algerian"><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#!resource"><i class="fa fa-envelope-o" aria-hidden="true"></i> Resources</a></li>
+                        <li>
+                            <!-- <a href="community.html"> <i class="fa fa-users" aria-hidden="true"></i> Community</a> -->
+                        </li>
+                        <li><a href="#!blog"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
+                        <li><a href="#!faq"><i class="fa fa-question-circle" aria-hidden="true"></i> FAQ</a></li>
+                        <li><a href="#!contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
+                        <li><a href="#!upgrade"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-4 hidden-xs">
+                    <div class="f-icon top pull-right">
+                        <a href="#"><i class="fa fa-facebook-square"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /goto -->
+
+    <div id="page-loading">
+        <img style="display:block; margin:0 auto;" width="500" height="500" src="assets/images/loader.gif">
+    </div>
+    <ng-view></ng-view>
+
+
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 clearfix">
+                    <a href="#/!">
+                        <img src="assets/images/logo.png" alt="Project name" class="logo">
+                    </a>
+                    <p>Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der Industrie bereits der Standard Demo-Text.</p>
+                    <a href="#">
+                        <div class="rot-bg"> <i class="fa fa-facebook fa-2x intro-icon"></i> </div>
+                    </a>
+                    <a href="#">
+                        <div class="rot-bg"> <i class="fa fa-twitter fa-2x"></i> </div>
+                    </a>
+                    <a href="#">
+                        <div class="rot-bg"> <i class="fa fa-google fa-2x"></i> </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <h4>Dialects</h4>
+                    <ul class="menu-new">
+                        <li>
+                            <a href="#"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-list">
+                        <li><a href="#/!"> Dashboard</a></li>
+                        <li><a href="#!resource"> Resources</a></li>
+                        <!-- <li><a href="community.html"> Community</a> </li> -->
+                        <li><a href="#!blog"> Blog</a></li>
+                        <li><a href="#!faq"> FAQ</a></li>
+                        <li><a href="#!contact"> Contact</a></li>
+                        <li><a href="#!upgrade"> Upgrade</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">
+        <p>Copyrights 2019 <a href="#">Arabicdiscovery</a></p>
+    </div>
+
+    <!-- Root file -->
+    <script src="assets/js/app.js"></script>
+
+    <script src="assets/js/authService.js"></script>
+
+    <!-- Routes -->
+    <script src="assets/js/route.js"></script>
+
+    <!-- Controllers -->
+    <script src="assets/js/controllers/loginController.js"></script>
+    <script src="assets/js/controllers/registerController.js"></script>
+    <script src="assets/js/controllers/contactController.js"></script>
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) {
+            /*VANILLA JAVASCRIPT*/
+            var element = document.getElementById("page-loading");
+            element.parentNode.removeChild(element);
+            /* OR WITH jQuery*/
+            setTimeout(function() {
+                $('#page-loading').fadeOut('slow')
+            }, 5000);
+        });
+    </script>
+</body>
+
+</html>
