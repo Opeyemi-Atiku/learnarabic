@@ -1,50 +1,70 @@
-app.controller('loginController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', function($rootScope, $scope, $location, $localStorage, Auth) {
+app.controller('loginController', function($cookies, $http, $scope, $location) {
     $scope.email = '';
     $scope.password = '';
     $scope.rootUrl = '';
+    $scope.loader = false;
+    $scope.rootUrl = "https://arab02.herokuapp.com";
+    $scope.message = null;
 
 
-    function successAuth(res) {
-        $localStorage.token = res.token;
-        window.location = "/";
+
+    // $scope.checkLoginStatus = function() {
+    //     var status = localStorage.getItem('status');
+    //     if (status == 'logged in') {
+    //         $location.path('/dashboard');
+    //     }
+    // }
+    $scope.reloadPage = function() {
+        if (window.localStorage) {
+            if (!localStorage.getItem('firstLoad')) {
+                localStorage['firstLoad'] = true;
+
+                window.location.reload();
+            } else
+                localStorage.removeItem('firstLoad');
+        }
     }
 
-    $scope.signin = function() {
-        var formData = {
-            email: $scope.email,
-            password: $scope.password
-        };
+    $scope.login = function() {
+        $scope.loader = true;
 
-        Auth.signin(formData, successAuth, function() {
-            $rootScope.error = 'Invalid credentials.';
-        })
-    };
-
-    $scope.signIn = function() {
         var data = {
             email: $scope.email,
             password: $scope.password
         }
 
-        alert('signing in...');
+        $http({
+            method: "POST",
+            url: $scope.rootUrl + "/auth/signin",
+            data: data,
+            headers: { 'Content-Type': 'application/json', 'Process-Data': false }
+        }).
+        then(function success(response) {
+            var data = response.data;
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('status', "logged in");
+
+
+            $http.defaults.headers.common['Authorization'] = data.token;
+
+            // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
+            var cookieExp = new Date();
+
+            cookieExp.setDate(cookieExp.getDate() + 7);
+            $cookies.put('status', 'logged in', { expires: cookieExp });
+            $cookies.putObject('globals', data.user, { expires: cookieExp });
+
+            $scope.loader = false;
+            $location.path('/dashboard');
+            // window.location.reload();
+        }, function error(response) {
+            console.log(response);
+            console.log(response.statusText);
+            $scope.message = response.data.error;
+        });
+
+
     }
 
-    $scope.signup = function() {
-        var formData = {
-            email: $scope.email,
-            password: $scope.password
-        };
-
-        Auth.signup(formData, successAuth, function() {
-            $rootScope.error = 'Failed to signup';
-        })
-    };
-
-    $scope.logout = function() {
-        Auth.logout(function() {
-            window.location = "/"
-        });
-    };
-    $scope.token = $localStorage.token;
-    $scope.tokenClaims = Auth.getTokenClaims();
-}]);
+});

@@ -1,0 +1,114 @@
+<div class="content-wrapper head-div" ng-init="getDialectPosts()">
+    <div class="container">
+
+        <div class="tia-bbpress-content">
+            <h2>{{ topic }}</h2>
+            <p>Select an Arabic discussion below.</p>
+            <div id="bbpress-forums">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="bbp-breadcrumb">
+                            <p><a href="https://www.talkinarabic.com/members-area" class="bbp-breadcrumb-home">Dashboard</a> <span class="bbp-breadcrumb-sep">›</span> <a href="#!community" class="bbp-breadcrumb-root">Community</a> <span class="bbp-breadcrumb-sep">›</span>                                <span class="bbp-breadcrumb-current">{{ topic }}</span></p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <span id="subscription-toggle"><span id="subscribe-7688"><a href="https://www.talkinarabic.com/community/f/introductions/?action=bbp_subscribe&amp;forum_id=7688&amp;_wpnonce=d126faac26" class="subscription-toggle" data-forum="7688" rel="nofollow">Subscribe</a></span></span>
+                    </div> -->
+                </div>
+                <!-- <div class="bbp-pagination">
+                    <div class="bbp-pagination-count">
+                        Viewing 15 topics - 1 through 15 (of 32 total)
+                    </div>
+                    <div class="bbp-pagination-links">
+                        <span aria-current="page" class="page-numbers current">1</span>
+                        <a class="page-numbers" href="https://www.talkinarabic.com/community/f/introductions/page/2/">2</a>
+                        <a class="page-numbers" href="https://www.talkinarabic.com/community/f/introductions/page/3/">3</a>
+                        <a class="next page-numbers" href="https://www.talkinarabic.com/community/f/introductions/page/2/">→</a>
+                    </div>
+                </div> -->
+
+
+                <table class="table table-bordered" ng-show="posts">
+                    <tr>
+                        <th width="60%">Topic</th>
+
+                        <!-- <th width="20%">Latest Response By</th> -->
+                    </tr>
+                    <tr ng-repeat="post in posts">
+                        <td><a class="bbp-topic-permalink" href="#!/community-post/{{ post._id }}">{{ post.title }}</a>
+                            <p class="bbp-topic-meta">
+                                <span class="bbp-topic-started-by">Started by: {{ post.postedBy.name }}</span>
+                            </p>
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+                <div class="row" ng-show="posts.length < 1">
+                    <p style="text-align: center; color: orange; font-size: 18px;">
+                        No post available.
+                    </p>
+                </div>
+                <div class="row" ng-hide="posts">
+                    <div id="page-loading2">
+                        <img style="display:block; margin:0 auto;" width="500" height="500" src="assets/images/loader.gif">
+                    </div>
+                </div>
+
+
+                <!-- <div class="bbp-pagination">
+                    <div class="bbp-pagination-count">
+                        Viewing 15 topics - 1 through 15 (of 32 total)
+                    </div>
+                    <div class="bbp-pagination-links">
+                        <span aria-current="page" class="page-numbers current">1</span>
+                        <a class="page-numbers" href="#">2</a>
+                        <a class="page-numbers" href="#">3</a>
+                        <a class="next page-numbers" href="#">→</a>
+                    </div>
+                </div> -->
+                <div id="new-topic-0" class="bbp-topic-form">
+                    <form id="new-post" name="newPost" ng-show="{{ loggedIn() }}">
+                        <fieldset class="bbp-form">
+                            <legend>
+                                Create A New Topic on “{{ topic }}” dialect
+                            </legend>
+                            <div>
+                                <p>
+                                    <label for="bbp_topic_title">Topic Title (Maximum Length: 80):</label><br>
+                                    <input type="text" id="bbp_topic_title" value="" tabindex="101" ng-model="post.title" size="40" name="bbp_topic_title" required maxlength="80">
+                                </p>
+                                <p>
+                                    <label for="bbp_topic_title">Image</label><br>
+                                    <input type="file" name="bbp_topic_title" required id="postImage">
+                                </p>
+                                <div class="bbp-the-content-wrapper">
+                                    <textarea id="bbp_topic_content" class="bbp-the-content" name="bbp_topic_content" ng-model="post.post" cols="60" rows="12" required tabindex="102"></textarea>
+                                </div>
+
+                                <!-- <p>
+    
+                                        <label><input type="checkbox"> Notify me of follow-up replies via email</label>
+                                    </p> -->
+                                <div class="bbp-submit-wrapper">
+                                    <button type="button" ng-disabled="!newPost.$valid" tabindex="104" id="bbp_topic_submit" ng-click="addPost()" name="bbp_topic_submit" class="button submit">Create Post</button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="bbp_forum_id" id="bbp_forum_id" value="7688">
+                            <input type="hidden" name="action" id="bbp_post_action" value="bbp-new-topic">
+                            <input type="hidden" id="_wpnonce" name="_wpnonce" value="aa1febb581"><input type="hidden" name="_wp_http_referer" value="/community/f/introductions/">
+                        </fieldset>
+                    </form>
+
+                    <div id="new-topic-0" class="bbp-topic-form" ng-hide="{{ loggedIn() }}">
+                        <legend><a href="#!login">Sign In</a> to create a topic</legend>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="content-wrapper head-div" ng-init="getUser()">
+    <div class="inner-content">
+        <div class="container">
+            <div class="view-account">
+                <section class="module">
+                    <div class="module-inner">
+                        <div class="content-panel">
+
+                            <form class="form-horizontal" name="profileForm">
+                                <fieldset class="fieldset">
+
+                                    <div class="col-md-3">
+                                        <div class="input-space avatar">
+                                            <figure class="figure col-md-12 col-sm-12 col-xs-12">
+                                                <img class="img-rounded img-responsive" src="https://arab02.herokuapp.com/api/usersPhoto/{{ user._id }}" alt="">
+
+                                            </figure>
+                                            <div class="form-inline col-md-12 col-sm-12 col-xs-12">
+                                                <input type="file" class="file-uploader pull-left" id="photo">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="input-space">
+                                            <label>User Name</label>
+
+                                            <input type="text" ng-model="user.name" required>
+
+                                        </div>
+                                        <!-- <div class="input-space">
+                                            <label>Membership Plan</label>
+
+                                            <select class="form-control">
+                                                <option>Basic Plan</option>
+                                                <option selected>Standard Plan</option>
+                                                <option>Premium Plan</option>
+                                            </select>
+
+                                        </div> -->
+                                        <div class="input-space">
+                                            <label>First Name</label>
+
+                                            <input type="text" class="form-control" ng-model="user.first_name" required>
+
+                                        </div>
+
+                                        <div class="input-space">
+                                            <label>Last Name</label>
+
+                                            <input type="text" class="form-control" ng-model="user.last_name" required>
+
+                                        </div>
+
+                                        <div class="input-space">
+                                            <label>Email</label>
+
+                                            <input type="email" class="form-control" ng-model="user.email" required>
+
+                                        </div>
+
+
+
+                                        <hr>
+                                        <div class="input-space">
+
+                                            <button class="p-btn" ng-disabled="profileForm.$invalid" ng-click="editProfile()">Update Profile</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </form>
+
+                            <br>
+                            <form name="passwordForm">
+                                <fieldset class="fieldset">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <h3 class="fieldset-title">Change Password</h3>
+                                        <p ng-show="passMessage" class="red">Incorrect Password</p>
+                                        <div class="input-space">
+                                            <label>Current Password</label>
+
+                                            <input type="password" class="form-control" required ng-model="password.current">
+
+                                        </div>
+                                        <div class="input-space">
+                                            <label>New Password</label>
+
+                                            <input type="password" class="form-control" minlength="8" ng-keyup="runCheck()" name="password" required ng-model="password.new">
+                                            <span ng-show="passwordForm.password.$touched && !minLength" class="red">Your password must be a minimum of 8 characters</span>
+
+                                        </div>
+                                        <div class="input-space">
+                                            <label>Re-enter New Password</label>
+
+                                            <input type="password" class="form-control" minlength="8" name="passwordTwo" required ng-model="password.newAgain" ng-blur="checkPasswords()">
+                                            <span ng-show="passwordForm.passwordTwo.$dirty && password.new !== password.newAgain" class="red">Passwords do not match</span>
+
+                                        </div>
+                                        <hr>
+                                        <div class="input-space">
+                                            <button type="button" class="p-btn" ng-click="changePassword()" ng-disabled="passwordForm.$invalid">Change Password</button>
+                                        </div>
+                                    </div>
+
+
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+        </section>
+    </div>
+
+</div>
+
+</div>
+</div>

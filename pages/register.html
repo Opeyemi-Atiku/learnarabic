@@ -1,61 +1,106 @@
-<div class="container-fluid bg-image">
+<div class="container-fluid bg-image" ng-init="checkLoginStatus()" style="height: 1200px !important;">
     <div class="row">
         <div class="login-wraper">
             <div class="hidden-xs">
-                <img src="assets/images/login.jpg" alt="">
+                <img src="assets/images/login.jpg" alt="" style="height: 1200px !important">
             </div>
-            <div class="banner-text hidden-xs">
-                <div class="line"></div>
-                <div class="b-text">
-                    Watch <span class="color-active">millions<br> of</span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">os</span> for free.
+            <div class="row" style="margin-bottom: -400px !important;">
+
+
+                <div class="banner-text hidden-xs">
+                    <div class="line"></div>
+                    <div class="b-text">
+                        Watch <span class="color-active">millions<br> of</span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">os</span> for free.
+                    </div>
+                    <div class="overtext">
+                        Over 6000 videos uploaded Daily.
+                    </div>
                 </div>
-                <div class="overtext">
-                    Over 6000 videos uploaded Daily.
-                </div>
-            </div>
-            <div class="login-window">
-                <div class="l-head">
-                    Sign Up for Free
-                </div>
-                <div class="l-form">
-                    <form name="registerationForm">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" required ng-model="email">
-                            <span ng-show="registerationForm.email.$touched && registerationForm.email.$invalid" class="red">A valid email is required.</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputName">Name</label>
-                            <input type="text" class="form-control" id="exampleInputName" name="email" required ng-model="name">
-                            <span ng-show="registerationForm.name.$touched && registerationForm.name.$invalid" class="red">Name is required.</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" ng-keyup="runCheck()" ng-model="password" required name="password" maxlength="10">
-                            <span ng-show="registerationForm.password.$touched && !minLength" class="red">Your password must be a minimum of 8 characters</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword2">Re-type Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2" ng-model="passwordTwo" required ng-blur="checkPasswords()" ng-keyup="checkPasswords()" name="passwordTwo" maxlength="10">
-                            <span ng-show="registerationForm.passwordTwo.$dirty && passwordTwo !== password" class="red">Passwords do not match</span>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-7"><button type="button" class="btn btn-cv1" ng-disabled="!registerationForm.$valid || !passwordsMatch" ng-click="signUp()">Sign Up</button></div>{{ registerationForm.$valid }} {{ passwordsMatch}}
-                            <div class="hidden-xs">
-                                <div class="col-lg-1 ortext">or</div>
-                                <div class="col-lg-4 signuptext"><a href="#!login">Log In</a></div>
+                <div class="login-window" style="margin-bottom: -200px !important;">
+                    <div class="l-head">
+                        Sign Up for Free
+                    </div>
+                    <div class="l-form">
+                        <form name="registerationForm">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="email" required ng-model="user.email">
+                                <span ng-show="registerationForm.email.$touched && registerationForm.email.$invalid" class="red">A valid email is required.</span>
                             </div>
-                        </div>
-                        <div class="row hidden-xs">
-                            <div class="col-lg-12 forgottext">
-                                <a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>
+
+
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required ng-model="user.firstName">
+                                <span ng-show="registerationForm.firstName.$touched && registerationForm.firstName.$invalid" class="red">First Name is required.</span>
                             </div>
-                        </div>
-                        <div class="visible-xs text-center mt-30">
-                            <span class="forgottext"><a href="#">Already have an account?</a></span>
-                            <span class="signuptext"><a href="#">Login here</a></span>
-                        </div>
-                    </form>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required ng-model="user.lastName">
+                                <span ng-show="registerationForm.lastName.$touched && registerationForm.lastName.$invalid" class="red">Last Name is required.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputName">User Name</label>
+                                <input type="text" class="form-control" id="exampleInputName" name="name" required ng-model="user.name">
+                                <span ng-show="registerationForm.name.$touched && registerationForm.name.$invalid" class="red">User Name is required.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="photo">Profile Image</label>
+                                <input type="file" class="form-control no" id="photo" name="photo" required>
+                                <span ng-show="registerationForm.photo.$touched && registerationForm.photo.$invalid" class="red">Profile image is required.</span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" ng-keyup="runCheck()" ng-model="user.password" required name="password" maxlength="10">
+                                <span ng-show="registerationForm.password.$touched && !minLength" class="red">Your password must be a minimum of 8 characters</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword2">Re-type Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword2" ng-model="user.passwordTwo" required ng-blur="checkPasswords()" ng-keyup="checkPasswords()" name="passwordTwo" maxlength="10">
+                                <span ng-show="registerationForm.passwordTwo.$dirty && user.passwordTwo !== user.password" class="red">Passwords do not match</span>
+                                <br>
+                                <p ng-show="loader">Signing Up...</p>
+                            </div>
+                            <div class="row">
+                                <!-- <img width="20" ng-show="loader" height="20" src="assets/images/loader2.gif"> -->
+
+                                <div class="col-lg-7"><button type="button" class="btn btn-cv1" ng-disabled="!registerationForm.$valid || !passwordsMatch" ng-click="signUp()">Sign Up</button></div>
+                                <div class="hidden-xs">
+                                    <div class="col-lg-1 ortext">or</div>
+                                    <div class="col-lg-4 signuptext"><a href="#!login">Log In</a></div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <!-- <img width="20" ng-show="loader" height="20" src="assets/images/loader2.gif"> -->
+                                <br>
+                                <p style="text-align: center;">Sign up with</p>
+                                <div class="row" style="text-align: center; padding-left: 30px;" ng-init="handleClientLoad()">
+                                    <button type="button" class="btn btn-primary" ng-click="FBlogin()" style="background: #3b5998 !important;"> <i class="fa fa-facebook-official"></i> Facebook</button>
+                               
+                                    <button type="button" class="btn btn-danger" style="background: #d34836 !important;" onclick="()" id="authorize-button"> <i class="fa fa-google-plus"></i> Google</button>
+                                </div>
+
+
+                            </div>
+                            
+                            <div class="row hidden-xs">
+                                <div class="col-lg-12 forgottext">
+                                    <!--<a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>-->
+                                </div>
+                            </div>
+                            <div class="visible-xs text-center mt-30">
+                                <span class="forgottext"><a href="#">Already have an account?</a></span>
+                                <span class="signuptext"><a href="#!login">Login here</a></span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,184 @@
+<div class="content-wrapper head-div" ng-init="reloadPage()">
+    <div class="inner-content" ng-init="getVocabularies()">
+        <div class="container">
+            <div class="row">
+                <h1 style="text-align: center; font-size:35px; margin: 10px;">MY VOCABULARY</h1>
+
+                <div class="row">
+                    <div class="col-md-3">
+
+
+
+
+                        <ul class="dropdownOptions">
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle theHeaders" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></a>
+                                <ul class="dropdown-menu theOptions" id="theOptionsOne">
+                                    <li ng-click="hideSection('a')">
+                                        Hide Arabic
+                                    </li>
+                                    <li ng-click="hideSection('m')">
+                                        Hide Meaning
+                                    </li>
+                                    <li ng-click="hideSection('p')">
+                                        Hide Phrase
+                                    </li>
+                                    <li ng-click="changeLevel('e')">
+                                        Change to Easy
+                                    </li>
+                                    <li ng-click="changeLevel('g')">
+                                        Change to Good
+                                    </li>
+                                    <li ng-click="changeLevel('d')">
+                                        Change to Difficult
+                                    </li>
+                                    <li ng-click="changeLevel('ed')">
+                                        Change to Extremely <br> &nbsp;&nbsp;&nbsp;&nbsp;Difficult
+                                    </li>
+                                    <li class="red" ng-click="deleteMultiple()">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="dropdownOptions">
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle theHeaders" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DIALECT FILTER <span class="caret"></span></a>
+                                <ul class="dropdown-menu theOptions" id="theOptionsTwo">
+                                    <li><input id="algerianDialect" ng-click="filterDialect('algerian')" type="checkbox"> Algerian</li>
+                                    <li><input id="bahrainiDialect" ng-click="filterDialect('bahraini')" type="checkbox" name=""> Bahraini</li>
+                                    <li><input id="egyptianDialect" ng-click="filterDialect('egyptian')" type="checkbox" name=""> Egyptian</li>
+                                    <li><input id="emiratiDialect" ng-click="filterDialect('emirati')" type="checkbox" name=""> Emirati</li>
+                                    <li><input id="iraqiDialect" ng-click="filterDialect('iraqi')" type="checkbox" name=""> Iraqi</li>
+                                    <li><input id="jordanianDialect" ng-click="filterDialect('jordanian')" type="checkbox" name=""> Jordanian</li>
+                                    <li><input id="lebaneseDialect" ng-click="filterDialect('lebanese')" type="checkbox" name=""> Lebanese</li>
+                                    <li><input id="libyanDialect" ng-click="filterDialect('libyan')" type="checkbox" name=""> Libyan</li>
+                                    <li><input id="moroccanDialect" ng-click="filterDialect('moroccan')" type="checkbox" name=""> Moroccan</li>
+                                    <li><input id="msaDialect" ng-click="filterDialect('msa')" type="checkbox" name=""> MSA</li>
+                                    <li><input id="omaniDialect" ng-click="filterDialect('omani')" type="checkbox" name=""> Omani</li>
+                                    <li><input id="palestinianDialect" ng-click="filterDialect('palestinian')" type="checkbox" name=""> Palestinian</li>
+                                    <li><input id="qatariDialect" ng-click="filterDialect('qatari')" type="checkbox" name=""> Qatari</li>
+                                    <li><input id="saudiDialect" ng-click="filterDialect('saudi')" type="checkbox" name=""> Saudi</li>
+                                    <li><input id="sudaneseDialect" ng-click="filterDialect('sudanese')" type="checkbox" name=""> Sudanese</li>
+                                    <li><input id="syrianDialect" ng-click="filterDialect('syrian')" type="checkbox" name=""> Syrian</li>
+                                    <li><input id="tunisianDialect" ng-click="filterDialect('tunisia')" type="checkbox" name=""> Tunisian</li>
+                                    <li><input id="yemeniDialect" ng-click="filterDialect('yemeni')" type="checkbox" name=""> Yemeni</li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="dropdownOptions">
+                            <li class="dropdown">
+                                <a href="javascript:void(0)" class="dropdown-toggle theHeaders" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LEVEL FILTER <span class="caret"></span></a>
+                                <ul class="dropdown-menu theOptions" id="theOptionsThree">
+                                    <li>
+                                        <input id="eLevel" type="checkbox" ng-click="filterLevel('eLevel', 'e')"> Easy
+                                    </li>
+                                    <li>
+                                        <input id="gLevel" type="checkbox" ng-click="filterLevel('gLevel', 'g')"> Good
+                                    </li>
+                                    <li>
+                                        <input id="dLevel" type="checkbox" ng-click="filterLevel('dLevel', 'd')"> Difficult
+                                    </li>
+                                    <li>
+                                        <input id="edLevel" type="checkbox" ng-click="filterLevel('edLevel', 'ed')"> Extremely <br> &nbsp;&nbsp;&nbsp;&nbsp;Difficult
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group" style="margin-top: -6px !important;">
+
+                            <input type="text" class="form-control" ng-model="searchText" ng-change="searchVocabularies()" placeholder="Search" aria-describedby="" style="height: 31px; padding-top: 5px; border-bottom-left-radius: 20px; border-top-left-radius: 20px;">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="seaarchText">Search By&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>/
+                                <ul class="dropdown-menu">
+                                    <li id="eType"><a href="javascript:void(0)" ng-click="searchBy('e')"><i class="fa fa-flag"></i> English</a></li>
+                                    <li id="aType"><a href="javascript:void(0)" ng-click="searchBy('a')"><i class="fa fa-flag"></i> Arabic</a></li>
+                                </ul>
+                            </div>
+                            <!-- /btn-group -->
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group" style="margin-bottom: 20px;">
+                                    <input type="text" class="form-control" placeholder="search" style="padding-top: 15px; height: 31px; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                      </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <table class="table table-bordered table-responsive">
+                        <thead style="background: white;">
+                            <tr id="vocHeader">
+                                <th><input type="checkbox" id="selectAll" ng-click="selectAllRows()" ng-model="checkAll" style="font-size: 30px; width: 20px !important; height: 20px !important;"></th>
+                                <th>ARABIC</th>
+                                <th>MEANING</th>
+                                <th>PHRASE</th>
+                                <th>LEVEL</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="tableBody" ng-repeat="vocabulary in vocabularies">
+                                <td><input type="checkbox" ng-checked="checkAll" id="selector{{ vocabulary._id }}" ng-click="selectRow($index)" class="selector form-control" style="height: 20px;"></td>
+                                <td><span id="ashow{{ vocabulary._id }}">{{ vocabulary.word }}</span><span style="display: none;" id="ahide{{ vocabulary._id }}">-------</span s> <i ng-click="toggleContent($index, 'a')" id="av{{ vocabulary._id }}" class="fa fa-eye-slash pull-right"></i></td>
+                                <td><span id="mshow{{ vocabulary._id }}">{{ vocabulary.meaning }}</span><span style="display: none;" id="mhide{{ vocabulary._id }}">--------------------</span s> <i ng-click="toggleContent($index, 'm')" id="mv{{ vocabulary._id }}" class="fa fa-eye-slash pull-right"></i></td>
+                                <td style="width: 28%;"><span id="pshow{{ vocabulary._id }}">{{ vocabulary.phrase }}</span><span style="display: none;" id="phide{{ vocabulary._id }}">--------------------</span s> <i ng-click="toggleContent($index, 'p')" id="pv{{ vocabulary._id }}" class="fa fa-eye-slash pull-right"></i></td>
+                                <td style="width: 38%; padding-left: 50px;">
+                                    <div class="row levels">
+                                        <div ng-click="changeThisLevel($index, 'ed')" class="col-md-3 {{ vocabulary.level == 'ed' ? 'ed' : '' }}" style="border-right:none; border-bottom-left-radius: 17px; border-top-left-radius: 17px; padding-top: 2px; border: 1px solid;">EXTREMELY <br>DIFFICULT</div ng>
+                                        <div ng-click="changeThisLevel($index, 'd')" class="col-md-3 {{ vocabulary.level == 'd' ? 'd' : '' }}" style="padding-top: 11px;border: 1px solid;">DIFFICULT</div ng-click="changeThisLevel($index, 'ed')">
+                                        <div ng-click="changeThisLevel($index, 'g')" class="col-md-2 {{ vocabulary.level == 'g' ? 'g' : '' }}" style="padding-top: 11px;border: 1px solid;">GOOD</div ng-click="changeThisLevel($index, 'ed')">
+                                        <div class="col-md-4" style="height: 40px;">
+                                            <div class="row" style="height: 40px;">
+                                                <div  ng-click="changeThisLevel($index, 'e')" class="col-md-6 {{ vocabulary.level == 'e' ? 'e' : '' }}" style="border: 1px solid; border-bottom-right-radius: 17px; border-top-right-radius: 17px; padding-top: 11px; padding-right: 20px; height: 40px;">
+                                                    EASY
+                                                </div>
+                                                <div class="col-md-6" style="padding-top: 4px; cursor: pointer;" ng-click="delete($index)">
+                                                    <i class="fa fa-trash" style="font-size: 30px; height: 50px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.dropdown-toggle').click(function(e) {
+        if ($(document).width() > 768) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+
+            if (url !== '#') {
+
+                window.location.href = url;
+            }
+
+        }
+    });
+</script>

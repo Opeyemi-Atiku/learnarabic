@@ -1,0 +1,362 @@
+<div id="myModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static" ng-init="reloadPage()">
+
+    <button class="back-btn" data-dismiss="modal" onclick="stopVideo()">< BACK</button>
+    <!-- <a class="other-btn" target="_blank" href="https://arab02.herokuapp.com/api/videoAttachment/{{ singleVideo._id }}">GRAMMAR GUIDE ></a> -->
+    <a class="other-btn" target="_blank" href="#!grammer-guide">GRAMMAR GUIDE ></a>
+    <a class="other-btn otherTwo" href="#!vocabularies" style="top: 9%;">MY VOCABULARY ></a>
+
+    <i class="fa fa-arrow-left back-btn" id="prevButton" title="Prev" onclick="prev()"></i>
+    <i class="fa fa-arrow-right back-btn" id="nextButton" onclick="next()" title="Next"></i>
+    <div class="modal-dialog" id="modalBox">
+
+        <!-- Modal content-->
+        <div class="modal-content" id="videoSection">
+
+            <div class="modal-body">
+                <iframe width="100%" id="player" src="{{ youtubeUrl }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                <div class="vid-space">
+
+
+
+                    <div class="row" id="allTranscriptionSection">
+
+
+                        <p id="arabic" class="hide" style="padding: 7px; font-size: 26px;">
+
+                        </p>
+                        <p id="msa" class="hide" style="padding: 7px; font-size: 18px;">
+
+                        </p>
+
+                        <p id="english" class="hide" style="padding: 7px; font-size: 18px;">
+
+                        </p>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <ul class="clearfix" id="controller">
+                    <li><button class="play-it" data-toggle="tooltip" title="Play"><i class="fa fa-play" id="playButton" aria-hidden="true"></i></button></li>
+                    <li>
+                        <div class="volume-chooser">
+                            <div class="volume-button">
+                                <span><i class="fa fa-volume-up" aria-hidden="true"></i></span>
+
+                            </div>
+                            <div class="volume-control">
+                                <input id="volume" type="range" onchange="setVolume()" value="100" max="100">
+                            </div>
+                        </div>
+
+
+                    </li>
+
+                    <li style="width: 12%;" id="timerSection">
+                        <div class="row"><span id="pMinute">--</span>:<span id="pSeconds">--</span> / <span id="dMinute">--</span>:<span id="dSeconds">--</span></div>
+                    </li>
+
+                    <li><button data-toggle="tooltip" title="Backward" onclick="rewind()"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
+                    <li><button data-toggle="tooltip" title="Forward" onclick="forward()"><i class="fa fa-forward" aria-hidden="true"></i></button></button>
+                    </li>
+                    <!-- <li><button class="repeat" data-toggle="tooltip" title="Stop Video" onclick="stopVideo()"><i class="fa fa-stop" aria-hidden="true"></i></button></li> -->
+                    <li><button class="loop" id="loop" data-toggle="tooltip" title="Loop" onclick="setLoop()"><span class="glyphicon glyphicon-refresh"></span></button></li>
+
+                    <!-- <li><button class="rew'ind" data-toggle="tooltip" title="Rewind 5s" onclick="rewindFive()"><i class="fa fa-history" aria-hidden="true"></i></button></li>
+                    <li><button class="previ" data-toggle="tooltip" title="Previous" onclick="prev()"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
+                    <li><button class="nxt" data-toggle="tooltip" title="Next" onclick="next()"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li> -->
+
+                    <li>
+                        <div class="dd">
+                            <span>1x</span>
+                            <div class="dd-content" style="bottom: 20px !important;">
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" id="test5" value="0.25" name="speed" class="speed">
+                                    <label for="test5">0.25x</label>
+                                </p>
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" id="test6" value="0.5" name="speed" class="speed">
+                                    <label for="test6">0.5x</label>
+                                </p>
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" value="0.75" id="test7" name="speed" class="speed">
+                                    <label for="test7">0.75x</label>
+                                </p>
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" value="1" id="test8" name="speed" class="speed">
+                                    <label for="test8">1x</label>
+                                </p>
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" value="1.5" id="test9" name="speed" class="speed">
+                                    <label for="test9">1.5x</label>
+                                </p>
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" id="test10" value="1.75" name="speed" class="speed">
+                                    <label for="test10">1.75x</label>
+                                </p>
+                                <p>
+                                    <input type="radio" onclick="changeSpeed($(this).val())" id="test11" value="2" name="speed" class="speed">
+                                    <label for="test11">2x</label>
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dd">
+                            <span><i class="glyphicon glyphicon-subtitles" aria-hidden="true"></i></span>
+                            <div class="dd-content" style="bottom: 22px !important;">
+
+                                <p ng-hide="arabicTranscripts.length < 1">
+                                    <input type="checkbox" id="test1" onchange="showArabic('arabic')">
+                                    <label for="test1" style="color: grey;">Arabic</label>
+                                </p>
+                                <p ng-hide="msaTranscripts.length < 1">
+                                    <input type="checkbox" id="test2" onchange="showMsa('msa')">
+                                    <label for="test2" style="color: grey;">MSA</label>
+                                </p>
+                                <p ng-hide="englishTranscripts.length < 1">
+                                    <input type="checkbox" id="test3" onchange="showEnglish('english')">
+                                    <label for="test3" style="color: grey;">English</label>
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li><button data-toggle="tooltip" title="Full Screen Mode" onclick="playFullscreen()"><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span></button></li>
+
+
+
+
+
+
+
+
+                </ul>
+
+
+
+            </div>
+            <div class="row" style="padding-left: 35px;">
+                <input id="videoScroll" type="range" onchange="seekVideo()" value="0" style="width: 100.6%;">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="content-wrapper" ng-init="getVideo()">
+    <div class="container">
+        <div class="row" ng-show="singleVideo">
+            <div class="col-lg-8 col-xs-12 col-sm-12">
+                <div class="sv-video">
+                    <div class="video-responsive">
+                        <div class="videoWrapper">
+                            <img src="https://arab02.herokuapp.com/api/videoThumbnail/{{ singleVideo._id }}" alt="" class="img-responsive">
+                            <div class="play-btn"><a href="javascript:void()" data-toggle="modal" data-target="#myModal"><i class="fa fa-play" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <h1><a href="javascript:void(0)">{{ singleVideo.videoTitle}}</a></h1>
+
+                <div class="author">
+                    <div class="author-head">
+                        <div class="">
+                            <div class="v-desc">
+                                <!-- <a href="javascript:void(0)">Man's Sky: 21 Minutes of New Gameplay - IGN First</a> -->
+                            </div>
+                            <hr>
+                            <div class="v-views">
+                                <ul>
+                                    Dialect:
+                                    <li class="green">{{ singleVideo.dialect }}</li>
+
+                                </ul>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Difficulty Level: <span class="nv" ng-show="singleVideo.level == 'novice'"><img src="assets/images/novi.png" class="circ"> Novice</span>
+                                        <span class="nv" ng-show="singleVideo.level == 'intermmediate'"><img src="assets/images/intermediate.png" class="circ"> Intermmediate</span>
+                                        <span class="nv" ng-show="singleVideo.level == 'professional'"><img src="assets/images/advance.png" class="circ"> Professional</span>
+
+                                        <br><br><br>
+
+                                        <p>{{ singleVideo.description }}</p>
+                                        <br>
+                                        <p><a class="btn btn-success" target="_blank" download href="https://arab02.herokuapp.com/api/videoAttachment/{{ singleVideo._id }}">Download Guide <i class="fa fa-download"></i></a></p>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="author-border"></div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="info">
+                    <br><br>
+                    <div class="comments">
+                        <div class="reply-comment">
+                            <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold">{{ singleVideo.comments.length }}</span> Comments</div>
+                            <div class="rc-ava">
+                                <a href="javascript:void(0)"><img src="assets/images/ava5.png" alt=""></a>
+                            </div>
+                            <div class="rc-comment">
+                                <form action="#" method="post">
+                                    <textarea rows="3" placeholder="Share what you think?" ng-model="comment"></textarea>
+                                    <button type="button" ng-click="videoComment()">
+                                        <i class="cv cvicon-cv-add-comment"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="comments-list">
+
+                            <div class="cl-header">
+                                <div class="c-nav">
+                                    <ul class="list-inline">
+                                        <li><a href="javascript:void(0)" class="active">Comments</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-repeat="comment in singleVideo.comments">
+
+
+                                <!-- comment -->
+                                <div class="cl-comment">
+                                    <div class="cl-avatar">
+                                        <a href="javascript:void(0)"><img src="https://arab02.herokuapp.com/api/usersPhoto/{{ comment.postedBy._id }}" alt=""></a>
+                                    </div>
+                                    <div class="cl-comment-text">
+                                        <div class="cl-name-date"><a href="javascript:void(0)">{{ comment.postedBy.name }}</a> {{ comment.created | date }} at {{ comment.created | date :'hh:mm a'}}</div>
+                                        <div class="cl-text">{{ comment.text }}</div>
+                                        <div class="cl-meta" style="cursor: pointer;"><a href="javascript:void(0)" ng-click="reply(comment._id)">Reply</a></div>
+
+
+                                        <div class="row" id="{{ comment._id }}" style="display: none;">
+                                            <textarea class="form-control" id="comment{{ comment._id }}" ng-model="userReply" placeholder="Type reply here"></textarea><br>{{ theReply }}
+                                            <button ng-click="sendReply(comment)" class="btn btn-info">Reply</button>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- END comment -->
+
+                                <!-- reply comment -->
+                                <div class="cl-comment-reply" ng-repeat="reply in comment.replyComment">
+                                    <div class="cl-avatar">
+                                        <a href="javascript:void(0)"><img src="https://arab02.herokuapp.com/api/usersPhoto/{{ reply.postedBy._id }}" alt=""></a>
+                                    </div>
+                                    <div class="cl-comment-text">
+                                        <div class="cl-name-date">{{ comment.created | date }} at {{ comment.created | date :'hh:mm a'}}</div>
+                                        <div class="cl-text">{{ reply.text }}</div>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- END reply comment -->
+                            </div>
+
+
+                            <!-- <div class="row hidden-xs">
+                                <div class="col-lg-12">
+                                    <div class="loadmore-comments">
+                                        <form action="#" method="post">
+                                            <button class="btn btn-default h-btn">Load more Comments</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-4 col-xs-12 col-sm-12 hidden-xs">
+
+
+
+
+
+
+                <!-- Recomended Videos -->
+                <div class="caption">
+                    <div class="left">
+                        <br>
+                        <a href="javascript:void(0)">Recommended Videos</a>
+                        <br>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="list">
+
+
+                    <div class="h-video row" ng-repeat="video in recommendedVideos">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="v-img">
+                                <a href="#!single-video/{{ video._id }}/{{ video.youtubeId }}">
+                                    <div class="videoWrapper">
+                                        <img src="https://arab02.herokuapp.com/api/videoThumbnail/{{ video._id }}" alt="" height="200" width="100%">
+                                        <!-- <iframe width="100%" src="https://www.youtube.com/embed/lTxn2BuqyzU?start=5" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+                                    </div>
+                                </a>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="v-desc">
+                                <a href="#!single-video/{{ video._id }}/{{ video.youtubeId }}">{{ video.videoTitle }}</a>
+                            </div>
+                            <div class="v-views">
+                                <span> {{ video.dialect }}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END Recomended Videos -->
+
+                <!-- load more -->
+                <div class="loadmore">
+                    <!-- <a href="javascript:void(0)">Show more videos</a> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row" ng-hide="singleVideo">
+            <div id="page-loading2">
+                <img style="display:block; margin:0 auto;" width="500" height="500" src="assets/images/loader.gif">
+            </div>
+        </div> -->
+
+    </div>
+</div>

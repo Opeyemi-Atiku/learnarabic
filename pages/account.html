@@ -1,0 +1,61 @@
+<div class="content-wrapper head-div" ng-init="getUserInfo()">
+
+    <div id="generic_price_table">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <!--PRICE HEADING START-->
+                        <div class="price-heading clearfix">
+                            <h3>Create Password</h3>
+                            <hr>
+                            <form name="accountForm">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputEmail" minlength="8" name="passOne" required ng-model="user.password">
+                                    <span ng-show="accountForm.passOne.$touched && accountForm.passOne.$invalid" class="red">Minimum of 8 characters required</span>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword">Re-enter Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword" required name="passTwo" minlength="8" ng-model="user.passTwo">
+
+                                    <span ng-show="accountForm.passTwo.$dirty && user.passTwo != user.password" class="red">Passwords do not match.</span>
+                                    <br>
+                                    <p ng-show="loader">Processing...</p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-4" style="text-align: center;">
+                                        <button type="button" ng-click="signUp()" ng-disabled="!accountForm.$valid" class="btn btn-cv1">Create</button>
+                                    </div>
+                                </div>
+
+
+                        </div>
+
+
+                        </form>
+                    </div>
+
+                    <!--//PRICE HEADING END-->
+                </div>
+            </div>
+    </div>
+    <div class="container">
+
+        <!--BLOCK ROW START-->
+        <div class="row">
+
+        </div>
+        <!--//BLOCK ROW END-->
+
+    </div>
+    </section>
+
+</div>
+
+
+</div>

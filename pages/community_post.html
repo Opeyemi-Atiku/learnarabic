@@ -1,0 +1,180 @@
+<div class="blog-page area-padding" ng-init="getFullPost()">
+    <div class="container">
+        <div class="row">
+            <!-- Start single blog -->
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12" ng-show="singlePost !== null">
+                        <!-- single-blog start -->
+                        <article class="blog-post-wrapper">
+                            <div class="post-thumbnail">
+                                <img src="https://arab02.herokuapp.com/api/forumPhoto/{{ singlePost._id }}" alt="" />
+                            </div>
+                            <div class="post-information">
+                                <h2>{{ singlePost.title }}</h2>
+                                <div class="entry-meta">
+                                    <span class="author-meta"><i class="fa fa-user"></i> <a href="#">{{ singlePost.postedBy.name }}</a></span>
+                                    <span><i class="fa fa-clock-o"></i> {{ singlePost.createDate | date }} at {{ singlePost.createDate | date :'hh:mm a'}}</span>
+
+                                    <span><i class="fa fa-comments-o"></i> <a href="#">{{ singlePost.comments.length }} <span ng-show="singlePost.comments.length > 1">comments</span><span ng-show="singlePost.comments.length < 2">comment</span></a>
+                                    </span>
+                                </div>
+                                <div class="entry-content">
+                                    <p>{{ singlePost.text }}</p>
+
+                                </div>
+                            </div>
+                        </article>
+                        <div class="clear"></div>
+                        <div class="single-post-comments">
+                            <div class="comments-area">
+                                <div class="comments-heading">
+                                    <h3>{{ singlePost.comments.length }} <span ng-show="singlePost.comments.length > 1">comments</span><span ng-show="singlePost.comments.length < 2">comment</span></h3>
+                                </div>
+                                <div class="comments-list">
+                                    <ul id="box">
+
+                                        <div class="row" ng-repeat="comment in singlePost.comments">
+
+
+                                            <li>
+                                                <div class="comments-details">
+                                                    <div class="comments-list-img">
+                                                        <img src="assets/images/avatar.png" alt="post-author">
+                                                    </div>
+                                                    <div class="comments-content-wrap">
+                                                        <span>
+                                                                    <b><a href="#">{{ comment.postedBy.name }}</a></b>
+                                                                    
+                                                                    <span class="post-time">{{ comment.created | date }} at {{ comment.created | date :'hh:mm a'}} </span>
+                                                        <span ng-click="reply(comment._id)" style="cursor: pointer;">Reply</span>
+                                                        </span>
+                                                        <p>{{ comment.text }}</p><br>
+                                                        <div class="row" id="{{ comment._id }}" style="display: none;">
+                                                            <textarea class="form-control" id="comment{{ comment._id }}" ng-model="userReply" placeholder="Type reply here"></textarea><br>{{ theReply }}
+                                                            <button ng-click="sendReply(comment)" class="btn btn-info">Reply</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="threaded-comments" ng-repeat="reply in comment.replyComment">
+                                                <div class="comments-details">
+                                                    <div class="comments-list-img">
+                                                        <img src="assets/images/avatar.png" alt="post-author">
+                                                    </div>
+                                                    <div class="comments-content-wrap">
+                                                        <span>
+                                                                    <b><a href="#">{{ reply.postedBy.name }}</a></b>
+                                                                    
+                                                                    <span class="post-time">{{ reply.created | date }} at {{ reply.created | date :'hh:mm a'}}</span>
+
+                                                        </span>
+                                                        <p>{{ reply.text }}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="comment-respond">
+                                <h3 class="comment-reply-title">Comment on this post </h3>
+
+                                <form name="commentForm" ng-show="{{ loggedIn() }}">
+                                    <div class="row">
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 comment-form-comment">
+                                            <p>Comment</p>
+                                            <textarea id="message-box" ng-model="theComment" cols="30" rows="10" required></textarea>
+                                            <button class="p-btn" ng-disabled="!commentForm.$valid" ng-click="comment()">Post Comment</button>
+
+
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row" ng-hide="{{ loggedIn() }}">{{ loggedIn() }}
+                                    <legend><a href="#!login">Sign In</a> to comment on post</legend>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- single-blog end -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="page-head-blog">
+                    <div class="single-blog-page">
+                        <!-- search option start -->
+                        <form action="#">
+                            <div class="search-option">
+                                <input type="text" placeholder="Search...">
+                                <button class="button" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                            </div>
+                        </form>
+                        <!-- search option end -->
+                    </div>
+                    <div class="single-blog-page">
+                        <!-- recent start -->
+                        <div class="left-blog">
+                            <h4>recent post</h4>
+                            <div class="recent-post">
+                                <!-- start single post -->
+                                <div class="recent-single-post" ng-repeat="post in posts">
+                                    <div class="post-img">
+                                        <a href="#!/community-post/{{ post._id }}">
+                                            <img src="https://arab02.herokuapp.com/api/forumPhoto/{{ post._id }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="pst-content">
+                                        <p><a href="#"> {{ post.title }}</a></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- recent end -->
+                    </div>
+                    <div class="single-blog-page">
+                        <!-- <div class="left-blog">
+                                <h4>categories</h4>
+                                <ul>
+                                    <li>
+                                        <a href="#">Portfolio</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Project</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">wordpress</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Joomla</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Html</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Website</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- End left sidebar -->
+        </div>
+    </div>
+</div>
+<!-- End Blog Area -->
+<div class="clearfix"></div>

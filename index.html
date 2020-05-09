@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
+    <meta name="google-signin-client_id" content="686081405982-q6c3827ksm99dj0oas0b77h8r7n5d76l.apps.googleusercontent.com">
     <meta name="author" content="">
     <link rel="icon" href="favicon.png">
     <title>Arabic Discovery | Home Page</title>
     <!-- Bootstrap core CSS -->
+    <link href="assets/css/tooltip.css" rel="stylesheet">
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Theme CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/font-circle-video.css" rel="stylesheet">
+
     <link href="assets/css/ion.rangeSlider.css" rel="stylesheet">
     <link href="assets/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/new.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/font-circle-video.css" rel="stylesheet">
+
     <!-- font-family: 'Hind', sans-serif; -->
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
     <style>
@@ -36,134 +42,407 @@
         input.ng-untouched {
             border: 2px solid rgb(117, 230, 117) !important;
         }
+        
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
+        }
+        /* desktop */
+        
+        @media only screen and (min-width: 768px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+                float: inline-start;
+                left: -80%;
+            }
+            #player {
+                height: 525px !important;
+            }
+        }
+        /* mobile */
+        
+        @media only screen and (max-width: 768px) {
+            .dropdown:hover .dropdown-menu {
+                /* left: -18%; */
+            }
+            #player {
+                height: 200px !important;
+            }
+        }
+        
+        hr {
+            /* margin-bottom: -5px !important; */
+        }
+        
+        span {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        span[aria-label]:after {
+            opacity: 0;
+            content: attr(aria-label);
+            padding: 10px;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            white-space: nowrap;
+            box-shadow: 1px 1px 20px #aaa;
+            color: #fff;
+            transform-style: preserve-3d;
+            border-radius: 5px;
+            word-wrap: none;
+            z-index: 20;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 200;
+            font-size: 15px;
+            top: -43px;
+            left: 30%;
+            transform: translate(-50%);
+            background-color: #287f36;
+        }
+        
+        span[aria-label]:hover:after {
+            opacity: 1;
+        }
+        
+        span[aria-label]:hover {
+            color: #287f36;
+            border-radius: 7px !important;
+            padding: 6px;
+            /* color: white; */
+        }
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            /* margin: 10px 0; */
+            width: 220%;
+            margin-left: -20px;
+            margin-bottom: -70px;
+            background: #287f36;
+            transform: rotateY('180deg')
+            /* transform-y: rotate(90deg); */
+        }
+        
+        input[type=range]:focus {
+            outline: none;
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 70%;
+            height: 9px;
+            cursor: pointer;
+            animate: 0.2s;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            background: #fff;
+            border-radius: 25px;
+            border: 0px solid #000101;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            border: 0px solid #000000;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background: #195a23;
+            cursor: grab;
+            -webkit-appearance: none;
+            margin-top: 0px;
+        }
+        
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            /* background: #287f36; */
+        }
+        
+        input[type=range]::-moz-range-track {
+            width: 70%;
+            height: 9px;
+            cursor: pointer;
+            animate: 0.2s;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            background: #484d5b;
+            border-radius: 25px;
+            border: 0px solid #000101;
+        }
+        
+        input[type=range]::-moz-range-thumb {
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            border: 0px solid #000000;
+            height: 23px;
+            ;
+            width: 7px;
+            border-radius: 30%;
+            background: #287f36;
+            cursor: grab;
+        }
+        
+        input[type=range]::-ms-track {
+            width: 70%;
+            height: 9px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: transparent;
+            border-color: transparent;
+            border-width: 39px 0;
+            color: transparent;
+        }
+        
+        input[type=range]::-ms-fill-lower {
+            background: #484d5b;
+            border: 0px solid #000101;
+            border-radius: 50px;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+        }
+        
+        input[type=range]::-ms-fill-upper {
+            background: #484d5b;
+            border: 0px solid #000101;
+            border-radius: 50px;
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+        }
+        
+        input[type=range]::-ms-thumb {
+            box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+            border: 0px solid #000000;
+            height: 23px;
+            width: 5px;
+            border-radius: 30%;
+            background: #fff;
+            cursor: grab;
+        }
+        
+        input[type=range]:focus::-ms-fill-lower {
+            /* background: #287f36; */
+        }
+        
+        input[type=range]:focus::-ms-fill-upper {
+            /* background: #287f36; */
+        }
+        /* #controller button:active {
+            color: orangered !important;
+        }
+        
+        #controller li:hover {
+            color: orangered !important;
+        } */
+        
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        
+        .fullScreen {
+            width: 102% !important;
+            height: 200% !important;
+            margin-top: 0%;
+        }
     </style>
 
     <script src="assets/js/angular.min.js"></script>
     <script src="assets/js/angular-route.js"></script>
+    <script src="assets/js/angular-cookies.min.js"></script>
     <script src="assets/js/ngStorage.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/vendor/rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <link rel="stylesheet" href="assets/js/vendor/player/johndyer-mediaelement-89793bc/build/mediaelementplayer.min.css" />
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,fr,es,pt,it',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="assets/js/translate.js"></script>
+    <link rel="stylesheet" href="assets/css/translate.css">
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 </head>
 
-<body ng-app="myApp" ng-controller="appController">
+<body class="single-video light" ng-app="myApp" ng-controller="appController">
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="background: #0759a0 !important; color: white;">
+
         <div class="row">
-            <div class="navbar-container">
+            <div class="navbar-container" style="border-color: #0759a0 !important;">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-4 visible-xs">
-                            <a href="#" class="btn-menu-toggle"><i class="cv cvicon-cv-menu"></i></a>
+                            <a href="#" class="btn-menu-toggle"><i class="cv cvicon-cv-menu" style="color: white;"></i></a>
                         </div>
-                        <div class="col-lg-4 col-md-3 col-xs-4">
+                        <div class="col-lg-2 col-md-2 col-xs-4">
                             <a class="navbar-brand" href="#/!">
-                                <img src="assets/images/logo.png" alt="Project name" class="top-logo">
+                                <img src="assets/images/logo.png" alt="Arabic Discovery" class="top-logo">
                             </a>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-xs-4">
-                            <form action="search.html" method="post">
+                        <div class="col-lg-5 col-md-5 col-xs-4">
+                            <form>
                                 <div class="topsearch">
                                     <i class="cv cvicon-cv-cancel topsearch-close"></i>
                                     <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search"></i></span>
-                                        <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+                                        <span class="input-group-addon" id="sizing-addon2" style="z-index: 999999 !important;"><i class="fa fa-search"></i></span>
+                                        <input type="text" ng-enter="search()" id="searchText" class="form-control" placeholder="Press enter to search video title" aria-describedby="sizing-addon2">
                                         <div class="input-group-btn">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>/
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
-                                                <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
-                                                <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
-                                                <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
-                                                <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                            </ul>
+
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 100% !important;"><i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;</button>/
+
                                         </div>
                                         <!-- /btn-group -->
                                     </div>
+
                                 </div>
                             </form>
                         </div>
-                        <div class="col-lg-2 col-md-3 hidden-xs">
+                        <div class="col-lg-3 col-md-3 hidden-xs">
+
                             <div class="selectuser pull-right">
+
                                 <div class="btn-group pull-right dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Profile
+                                    <button class="btn btn-default dropdown-toggle hide" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{ name? name :'Account'}}
                                         <i class="fa fa-angle-down" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#!login">Profile</a></li>
-                                        <li><a href="signup.html">Account Setting</a></li>
-                                        <li><a href="signup.html">Logout</a></li>
+                                        <li><a href="#!register" ng-show="loggedIn == false">Sign Up</a></li>
+                                        <li><a href="#!login" ng-show="loggedIn == false">Sign In</a></li>
+                                        <li><a href="#!account-settings" ng-show="loggedIn == true">Account Setting</a></li>
+                                        <li><a href="#!vocabularies" ng-show="loggedIn == true">My Vocabulary</a></li>
+                                        <li><a href="javascript:void()" ng-click="logOut()" ng-show="loggedIn == true">Logout</a></li>
                                     </ul>
                                 </div>
+
                             </div>
-                            <div class="avatar pull-right">
-                                <img src="assets/images/avatar.png" alt="avatar" />
-                                <span class="status"></span>
+
+                            <div class="avatar pull-right" ng-show="loggedIn == true">
+                                <!-- <img src="assets/images/avatar.png" alt="avatar" /> -->
+                                <!-- <span class="status"></span> -->
                             </div>
                             <div class="clearfix"></div>
                         </div>
+                        <div class="col-lg-2 col-md-2">
+                            <div class="hidden-xs hidden-sm" id="google_translate_element" style="margin-top: 38px;"></div class="hidden-xs">
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- /logo -->
-    <div class="mobile-menu">
-        <a href="#" class="mobile-menu-close"><i class="fa fa-times" aria-hidden="true"></i></a>
+    <div class="mobile-menu" style="color: white !important;">
+        <a href="#" class="mobile-menu-close"><i class="fa fa-times" aria-hidden="true" style="color: white !important;"></i></a>
         <div class="mobile-menu-content">
             <div class="mobile-menu-user">
                 <div class="mobile-menu-user-img">
-                    <img src="assets/images/ava11.png" alt="">
+                    <img ng-show="loggedIn == false" src="assets/images/logo.png" class="logo" height="100px" alt="">
+                    <img ng-show="loggedIn == true" src="https://arab02.herokuapp.com/api/usersPhoto/{{ user._id }}" alt="">
                 </div>
+
+
                 <div class="btn-group pull-right dropdown">
+
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Profile <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        {{ loggedIn == true ? name : 'Account' }}<i class="fa fa-angle-down" aria-hidden="true"></i>
                     </button>
+
+
                     <ul class="dropdown-menu">
-                        <li><a href="login.html">Profile</a></li>
-                        <li><a href="signup.html">Account Setting</a></li>
-                        <li><a href="signup.html">Logout</a></li>
+                        <li><a href="#!register" ng-show="loggedIn == false">Sign Up</a></li>
+                        <li><a href="#!login" ng-show="loggedIn == false">Sign In</a></li>
+                        <li><a href="#!account-settings" ng-show="loggedIn == true">Account Setting</a></li>
+                        <li><a href="#!vocabularies" ng-show="loggedIn == true">My Vocabulary</a></li>
+                        <li><a href="javascript:void()" ng-click="logOut()" ng-show="loggedIn == true">Logout</a></li>
                     </ul>
                 </div>
+
             </div>
+
             <a href="#" class="btn mobile-menu-upload hidden-xs">
                 <i class="cv cvicon-cv-upload-video"></i>
                 <span>Upload Video</span>
             </a>
             <div class="mobile-menu-list">
                 <ul>
-                    <li><a href="#/!"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+                    <li ng-show="loggedIn == true"><a href="#!dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
                     <li>
                         <a href="#"><i class="fa fa-flag" aria-hidden="true"></i> Dialects <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                         <ul class="mobile-menu-categories">
                             <li>
-                                <a href="#!dialect/Egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
+                                <a href="#!dialect/algerian"><img src="assets/images/algerian.jpg" width="40" height="40" class="img-responsive"> Algerian</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
+                                <a href="#!dialect/bahraini"><img src="assets/images/bahraini.jpg" class="img-responsive"> Bahraini</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
+                                <a href="#!dialect/egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                                <a href="#!dialect/gulf"><img src="assets/images/gulf.jpg" class="img-responsive"> Gulf</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                                <a href="#!dialect/levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                                <a href="#!dialect/aatari"><img src="assets/images/qatari.jpg" class="img-responsive"> Qatari</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                                <a href="#!dialect/saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
                             </li>
                             <li>
-                                <a href="#!dialect/Algerian"><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
+                                <a href="#!dialect/iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
                             </li>
+                            <li>
+                                <a href="#!dialect/jordanian"><img src="assets/images/jordanian.jpg" class="img-responsive"> Jordanian</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/lebanese"><img src="assets/images/lebanese.jpg" class="img-responsive"> Lebanese</a>
+                            </li>
+
+                            <li>
+                                <a href="#!dialect/libyan"><img src="assets/images/libyan.jpg" class="img-responsive"> Libyan</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive" width="40" height="40"> Sudanese</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/modern"><img src="assets/images/msa.jpg" class="img-responsive"> Modern Standard</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/palestinian"><img src="assets/images/palestinian.jpg" class="img-responsive"> Palestinian</a>
+                            </li>
+                            <li>
+                                <a href="#!dialect/tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                            </li>
+
+
+
+                            <li>
+                                <a href="#!dialect/yemeni"><img src="assets/images/yemeni.jpg" class="img-responsive"> Yemeni</a>
+                            </li>
+
+
+
+
+
+
+
                         </ul>
                     </li>
                     <li><a href="#!resource"><i class="fa fa-envelope-o" aria-hidden="true"></i> Resources</a></li>
                     <li>
-                        <!-- <a href="community.html"> <i class="fa fa-users" aria-hidden="true"></i> Community</a> -->
+                        <a href="#!community"> <i class="fa fa-users" aria-hidden="true"></i> Community</a>
                     </li>
                     <li><a href="#!blog"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
                     <li><a href="#!faq"><i class="fa fa-question-circle" aria-hidden="true"></i> FAQ</a></li>
@@ -171,59 +450,95 @@
                     <li><a href="#!upgrade"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade</a></li>
                 </ul>
             </div>
-            <a href="login.html" class="btn mobile-menu-logout">Log out</a>
+            <a href="javascript:void()" ng-click="logOut()" ng-show="loggedIn == true" class="btn mobile-menu-logout">Log out</a>
+            <a href="#!login" ng-show="loggedIn == false" class="btn mobile-menu-logout">Sign In</a>
+            <a href="#!register" ng-show="loggedIn == false" class="btn mobile-menu-logout">Sign Up</a>
+            <!-- <div class="hidden-lg hidden-xl" id="google_translate_element" style="margin-top: 38px;"></div class="hidden-xs"> -->
         </div>
     </div>
-    <div class="navbar-container2 hidden-xs">
+    <div class="navbar-container2 hidden-xs" style="background: #0759a0 !important;">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-8">
+                <div class="col-md-10 col-sm-10 col">
                     <ul class="list-inline menu hidden-xs">
-                        <li><a href="#/!"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+
+                        <li ng-show="loggedIn == true" style=" color: white !important;"><a href="#!dashboard" style=" color: white !important;"><i class="fa fa-tachometer" aria-hidden="true"  style=" color: white !important;"></i> Dashboard</a></li>
                         <li class="color-active">
-                            <a href="#"><i class="fa fa-flag" aria-hidden="true"></i> Dialects <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <a href="#" style=" color: white !important;"><i class="fa fa-flag" aria-hidden="true" style=" color: white !important;"></i> Dialects <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                             <ul>
                                 <li>
-                                    <a href="#!dialect/Egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
+                                    <a href="#!dialect/algerian"><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
+                                    <a href="#!dialect/bahraini"><img src="assets/images/bahraini.jpg" class="img-responsive"> Bahraini</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
+                                    <a href="#!dialect/egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                                    <a href="#!dialect/gulf"><img src="assets/images/gulf.jpg" class="img-responsive"> Gulf</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                                    <a href="#!dialect/levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                                    <a href="#!dialect/aatari"><img src="assets/images/qatari.jpg" class="img-responsive"> Qatari</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                                    <a href="#!dialect/saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
                                 </li>
                                 <li>
-                                    <a href="#!dialect/Algerian"><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
+                                    <a href="#!dialect/iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/jordanian"><img src="assets/images/jordanian.jpg" class="img-responsive"> Jordanian</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/lebanese"><img src="assets/images/lebanese.jpg" class="img-responsive"> Lebanese</a>
+                                </li>
+
+                                <li>
+                                    <a href="#!dialect/libyan"><img src="assets/images/libyan.jpg" class="img-responsive"> Libyan</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/modern"><img src="assets/images/msa.jpg" class="img-responsive"> Modern Standard</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/palestinian"><img src="assets/images/palestinian.jpg" class="img-responsive"> Palestinian</a>
+                                </li>
+                                <li>
+                                    <a href="#!dialect/tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                                </li>
+
+
+
+                                <li>
+                                    <a href="#!dialect/yemeni"><img src="assets/images/yemeni.jpg" class="img-responsive"> Yemeni</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#!resource"><i class="fa fa-envelope-o" aria-hidden="true"></i> Resources</a></li>
+                        <li><a href="#!resource" style=" color: white !important;"><i class="fa fa-envelope-o" aria-hidden="true" style=" color: white !important;"></i> Resources</a></li>
                         <li>
-                            <!-- <a href="community.html"> <i class="fa fa-users" aria-hidden="true"></i> Community</a> -->
+                            <a href="#!community" style=" color: white !important;"> <i class="fa fa-users" aria-hidden="true" style=" color: white !important;"></i> Community</a>
                         </li>
-                        <li><a href="#!blog"><i class="fa fa-th-large" aria-hidden="true"></i> Blog</a></li>
-                        <li><a href="#!faq"><i class="fa fa-question-circle" aria-hidden="true"></i> FAQ</a></li>
-                        <li><a href="#!contact"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
-                        <li><a href="#!upgrade"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade</a></li>
+                        <li><a href="#!blog" style=" color: white !important;"><i class="fa fa-th-large" aria-hidden="true" style=" color: white !important;"></i> Blog</a></li>
+                        <li><a href="#!faq" style=" color: white !important;"><i class="fa fa-question-circle" aria-hidden="true" style=" color: white !important;"></i> FAQ</a></li>
+                        <li><a href="#!contact" style=" color: white !important;"><i class="fa fa-envelope-o" aria-hidden="true" style=" color: white !important;"></i> Contact</a></li>
+                        <li><a href="#!upgrade" style=" color: white !important;"><i class="fa fa-shopping-cart" aria-hidden="true" style=" color: white !important;"></i> Upgrade</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 col-sm-4 hidden-xs">
+                <div class="col-md-2 col-sm-2 hidden-xs">
                     <div class="f-icon top pull-right">
-                        <a href="#"><i class="fa fa-facebook-square"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/ArabicDiscovery/"><i class="fa fa-facebook-square" style=" color: white !important;"></i></a>
+                        <a target="_blank" href="https://twitter.com/ArabicDiscovery"><i class="fa fa-twitter" style=" color: white !important;"></i></a>
+
+                        <a target="_blank" href="https://www.instagram.com/arabic_discovery/"><i class="fa fa-instagram" style=" color: white !important;"></i></a>
                     </div>
                 </div>
             </div>
@@ -234,7 +549,10 @@
     <div id="page-loading">
         <img style="display:block; margin:0 auto;" width="500" height="500" src="assets/images/loader.gif">
     </div>
-    <ng-view></ng-view>
+
+
+    <div ng-view class="page-loading"></div>
+
 
 
 
@@ -243,46 +561,78 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 clearfix">
+
                     <a href="#/!">
-                        <img src="assets/images/logo.png" alt="Project name" class="logo">
+                        <img src="assets/images/logo.png" alt="Arabic Discovery" class="logo">
                     </a>
                     <p>Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der Industrie bereits der Standard Demo-Text.</p>
-                    <a href="#">
+                    <a href="https://www.facebook.com/ArabicDiscovery/">
                         <div class="rot-bg"> <i class="fa fa-facebook fa-2x intro-icon"></i> </div>
                     </a>
-                    <a href="#">
+                    <a href="https://twitter.com/ArabicDiscovery">
                         <div class="rot-bg"> <i class="fa fa-twitter fa-2x"></i> </div>
                     </a>
-                    <a href="#">
-                        <div class="rot-bg"> <i class="fa fa-google fa-2x"></i> </div>
+                    <a href="https://www.instagram.com/arabic_discovery/">
+                        <div class="rot-bg"> <i class="fa fa-instagram fa-2x"></i> </div>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <h4>Dialects</h4>
                     <ul class="menu-new">
                         <li>
-                            <a href="#"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
+                            <a href="#!dialect/algerian"><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
                         </li>
                         <li>
-                            <a href="#"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
+                            <a href="#!dialect/bahraini"><img src="assets/images/bahraini.jpg" class="img-responsive"> Bahraini</a>
                         </li>
                         <li>
-                            <a href=""><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
+                            <a href="#!dialect/egyptian"><img src="assets/images/egypt.jpg" class="img-responsive"> Egyptian</a>
                         </li>
                         <li>
-                            <a href=""><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                            <a href="#!dialect/gulf"><img src="assets/images/gulf.jpg" class="img-responsive"> Gulf</a>
                         </li>
                         <li>
-                            <a href=""><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                            <a href="#!dialect/levantine"><img src="assets/images/levantine.jpg" class="img-responsive"> Levantine</a>
                         </li>
                         <li>
-                            <a href=""><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                            <a href="#!dialect/aatari"><img src="assets/images/qatari.jpg" class="img-responsive"> Qatari</a>
                         </li>
                         <li>
-                            <a href=""><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                            <a href="#!dialect/saudi"><img src="assets/images/saudi.jpg" class="img-responsive"> Saudi</a>
                         </li>
                         <li>
-                            <a href=""><img src="assets/images/algerian.jpg" class="img-responsive"> Algerian</a>
+                            <a href="#!dialect/iraqi"><img src="assets/images/iraqi.jpg" class="img-responsive"> Iraqi</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/jordanian"><img src="assets/images/jordanian.jpg" class="img-responsive"> Jordanian</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/lebanese"><img src="assets/images/lebanese.jpg" class="img-responsive"> Lebanese</a>
+                        </li>
+
+                        <li>
+                            <a href="#!dialect/libyan"><img src="assets/images/libyan.jpg" class="img-responsive"> Libyan</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/sudanese"><img src="assets/images/sudanese.jpg" class="img-responsive"> Sudanese</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/modern"><img src="assets/images/msa.jpg" class="img-responsive"> Modern Standard</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/moroccan"><img src="assets/images/morrocan.jpg" class="img-responsive"> Moroccan</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/palestinian"><img src="assets/images/palestinian.jpg" class="img-responsive"> Palestinian</a>
+                        </li>
+                        <li>
+                            <a href="#!dialect/tunisian"><img src="assets/images/tunisian.jpg" class="img-responsive"> Tunisian</a>
+                        </li>
+
+
+
+                        <li>
+                            <a href="#!dialect/yemeni"><img src="assets/images/yemeni.jpg" class="img-responsive"> Yemeni</a>
                         </li>
                     </ul>
                 </div>
@@ -291,37 +641,102 @@
                     <ul class="footer-list">
                         <li><a href="#/!"> Dashboard</a></li>
                         <li><a href="#!resource"> Resources</a></li>
-                        <!-- <li><a href="community.html"> Community</a> </li> -->
+                        <li><a href="#!community"> Community</a> </li>
                         <li><a href="#!blog"> Blog</a></li>
                         <li><a href="#!faq"> FAQ</a></li>
+
                         <li><a href="#!contact"> Contact</a></li>
                         <li><a href="#!upgrade"> Upgrade</a></li>
+                        <li><a href="https://www.iubenda.com/privacy-policy/71617379" class="iubenda-nostyle no-brand iubenda-embed" title="Privacy Policy ">Privacy Policy</a>
+                            <script type="text/javascript">
+                                (function(w, d) {
+                                    var loader = function() {
+                                        var s = d.createElement("script"),
+                                            tag = d.getElementsByTagName("script")[0];
+                                        s.src = "https://cdn.iubenda.com/iubenda.js";
+                                        tag.parentNode.insertBefore(s, tag);
+                                    };
+                                    if (w.addEventListener) {
+                                        w.addEventListener("load", loader, false);
+                                    } else if (w.attachEvent) {
+                                        w.attachEvent("onload", loader);
+                                    } else {
+                                        w.onload = loader;
+                                    }
+                                })(window, document);
+                            </script>
+                        </li>
+                        <li><a href="https://www.iubenda.com/terms-and-conditions/71617379" class="iubenda-nostyle no-brand iubenda-embed" title="Terms and Conditions ">Terms and Conditions</a>
+                            <script type="text/javascript">
+                                (function(w, d) {
+                                    var loader = function() {
+                                        var s = d.createElement("script"),
+                                            tag = d.getElementsByTagName("script")[0];
+                                        s.src = "https://cdn.iubenda.com/iubenda.js";
+                                        tag.parentNode.insertBefore(s, tag);
+                                    };
+                                    if (w.addEventListener) {
+                                        w.addEventListener("load", loader, false);
+                                    } else if (w.attachEvent) {
+                                        w.attachEvent("onload", loader);
+                                    } else {
+                                        w.onload = loader;
+                                    }
+                                })(window, document);
+                            </script>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
     <div class="copyright">
-        <p>Copyrights 2019 <a href="#">Arabicdiscovery</a></p>
+        <p>Copyrights
+            <script>
+                document.write(new Date().getFullYear())
+            </script> <a href="#">Arabicdiscovery</a></p>
     </div>
-
+    </div>
     <!-- Root file -->
-    <script src="assets/js/app.js"></script>
-
-    <script src="assets/js/authService.js"></script>
+    <script src="app.js"></script>
+    <script src="https://apis.google.com/js/api.js">
+    </script>
+    <!-- <script src="assets/js/authService.js"></script> -->
 
     <!-- Routes -->
     <script src="assets/js/route.js"></script>
-
+    <script src="assets/js/youtube.js"></script>
+    <script src="assets/js/vocabulary.js"></script>
     <!-- Controllers -->
     <script src="assets/js/controllers/loginController.js"></script>
+    <script src="assets/js/controllers/vocabularyController.js"></script>
     <script src="assets/js/controllers/registerController.js"></script>
     <script src="assets/js/controllers/contactController.js"></script>
+    <script src="assets/js/controllers/communityController.js"></script>
+    <script src="assets/js/controllers/blogController.js"></script>
+    <script src="assets/js/controllers/userController.js"></script>
+    <script src="assets/js/vendor/player/johndyer-mediaelement-89793bc/build/mediaelement-and-player.min.js"></script>
     <!-- Bootstrap core JavaScript
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '1432990476853229',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v5.0'
+            });
+        };
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+
     <script src="assets/js/custom.js"></script>
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function(event) {
@@ -332,8 +747,393 @@
             setTimeout(function() {
                 $('#page-loading').fadeOut('slow')
             }, 5000);
+
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+        function showArabic(targetId) {
+
+            // Get already stored transcript fetched on page load
+            let aTranscripts = JSON.parse(localStorage.getItem(targetId));
+
+
+
+            // Run the visibilty test
+
+            if ($('#' + targetId).hasClass('hide')) {
+                $('#' + targetId).removeClass('hide')
+                $('#' + targetId).addClass('show');
+                $('#' + targetId).append('<hr>');
+            } else {
+                $('#' + targetId).removeClass('show');
+                $('#' + targetId).addClass('hide');
+
+            }
+
+            // Filter through the array of transcripts and display the corresponding one
+            setInterval(function() {
+                $.each(aTranscripts, function(index, obj) {
+
+
+                    if (parseFloat(obj.startTime) < player.getCurrentTime() && parseFloat(obj.endTime) > player.getCurrentTime()) {
+                        sentenceOne = '';
+
+                        // explode transcript to seperate each words
+                        let transcriptArr = obj.transcript.split(" ").reverse();
+
+
+                        // explode meaning to seperate each words
+                        let meaningArr = obj.meaning.split("|").reverse();
+
+                        // explode meaning to seperate each words
+                        let additionalInfoArr = obj.additionalInfo.split("|").reverse();
+
+
+
+
+                        for (i = 0; i < transcriptArr.length; i++) {
+
+                            // sentenceOne += '<span class="transcriptTexts" aria-label="' + meaningArr[i] + '">' + transcriptArr[i] + '</span> ';
+
+                            sentenceOne += `<div class="dd">
+                                <span class="transcriptTexts" transcriptId="` + obj._id + `" theWord="` + transcriptArr[i] + `">` + transcriptArr[i] + `</span>
+                                <div class="dd-content dd-meaning">
+                                    <p>` + meaningArr[i] + `</p>
+                                    <i>` + additionalInfoArr[i] + `</i>
+                                    <br>
+                                    <i class="fa fa-star pull-right saveWord" title="Save Word" transcriptId="` + obj._id + `" theWord="` + transcriptArr[i] + `"></i>
+                                </div>
+                            </div> `;
+
+                        }
+
+
+                        $('#' + targetId).html(sentenceOne);
+
+                    }
+
+                });
+
+
+            }, 3000);
+
+
+
+        }
+
+        $(document).on('mouseenter', '.contentBlocks2', function() {
+            $(this).html('<h1>COMING<br>SOON</h1>');
+            $(this).addClass('comingSoon');
+        });
+
+        $(document).on('mouseleave', '.contentBlocks2', function() {
+            let image = $(this).attr('image');
+            let country = $(this).attr('country');
+            $(this).html(`
+            <div class="row">
+                <img src="` + image + `" alt="" height="170" width="170" style="border-radius: 50%;">
+            </div>
+            <div class="row center">
+                <span style="color: black !important; padding-top: 18px; font-size: 20px;">` + country + `</span>
+            </div>
+            `);
+            $(this).removeClass('comingSoon');
+        });
+
+
+
+
+        $(document).on('click', '.transcriptTexts', function() {
+            let transcriptId = $(this).attr('transcriptId');
+            let word = $(this).attr('theWord');
+
+            console.log(transcriptId);
+            console.log(word);
+
+            var p = new Audio('https://arab02.herokuapp.com/api/wordAudio/' + transcriptId + '?word=' + word);
+            p.play();
+        });
+
+        // $(document).on('click', 'body:not(#modalBox)', function() {
+        //     player.pauseVideo();
+        // });
+
+
+        // $('#myModal').on('hidden.bs.modal', function(e) {
+
+        //     alert('hello');
+        //     player.pauseVideo();
+        // })
+
+
+
+
+
+        $(document).on('mouseenter', '#allTranscriptionSection', function() {
+            player.pauseVideo();
+        });
+
+        $(document).on('mouseleave', '#allTranscriptionSection', function() {
+            player.playVideo();
+        });
+
+        $(document).on('click', '.saveWord', function() {
+            $(this).css('backgroundColor', 'red');
+            $(this).removeClass('fa');
+            $(this).removeClass('fas');
+
+            let word = $(this).attr('theWord');
+            let transcriptId = $(this).attr('transcriptId');
+
+            let userData = localStorage.getItem('user');
+            let userId = JSON.parse(userData)._id;
+
+            let videoData = JSON.parse(localStorage.getItem('video'));
+            let dialect = videoData.dialect;
+            $.get("https://arab02.herokuapp.com/api/word/" + transcriptId + "?word=" + word, function(data, status) {
+
+
+
+                let collectionData = {
+                    transcriptId: transcriptId,
+                    userId: userId,
+                    meaning: data.meaning,
+                    word: word,
+                    phrase: data.transcriptId.transcript,
+                    dialect: dialect,
+                    level: 'g'
+                }
+
+
+                console.log(collectionData);
+
+                // return false;
+
+
+
+                $.ajax({
+                    url: "https://arab02.herokuapp.com/api/collection",
+                    type: "POST",
+                    crossDomain: true,
+                    data: collectionData,
+                    dataType: "json",
+                    success: function(response) {
+                        alert('Word saved');
+                    },
+                    error: function(xhr, status) {
+                        console.log(xhr);
+                        console.log(status);
+
+                    }
+                });
+
+            });
+
+
+        })
+
+
+
+        function showMsa(targetId) {
+
+            // Get already stored transcript fetched on page load
+            let mTranscripts = JSON.parse(localStorage.getItem(targetId));
+
+
+
+            // Run the visibilty test
+
+            if ($('#' + targetId).hasClass('hide')) {
+                $('#' + targetId).removeClass('hide')
+                $('#' + targetId).addClass('show');
+                $('#' + targetId).append('<hr>');
+            } else {
+                $('#' + targetId).removeClass('show')
+                $('#' + targetId).addClass('hide')
+
+            }
+
+            // Filter through the array of transcripts and display the corresponding one
+            setInterval(function() {
+                $.each(mTranscripts, function(index, obj) {
+
+
+                    if (parseFloat(obj.startTime) < player.getCurrentTime() && parseFloat(obj.endTime) > player.getCurrentTime()) {
+                        sentenceTwo = '';
+
+                        // explode transcript to seperate each words
+                        let transcriptArr = obj.transcript.split(" ").reverse();
+
+
+                        // explode meaning to seperate each words
+                        let meaningArr = obj.meaning.split("|").reverse();
+
+                        // explode meaning to seperate each words
+                        let additionalInfoArr = obj.additionalInfo.split("|").reverse();
+
+
+
+
+                        for (i = 0; i < transcriptArr.length; i++) {
+
+                            // sentenceOne += '<span class="transcriptTexts" aria-label="' + meaningArr[i] + '">' + transcriptArr[i] + '</span> ';
+
+                            sentenceTwo += `<div class="dd">
+                                <span class="transcriptTexts" transcriptId="` + obj._id + `" theWord="` + transcriptArr[i] + `">` + transcriptArr[i] + `</span>
+                                <div class="dd-content dd-meaning">
+                                    <p>` + meaningArr[i] + `</p>
+                                    <i>` + additionalInfoArr[i] + `</i>
+                                    <br>
+                                    <i class="fa fa-star pull-right saveWord" transcriptId="` + obj._id + `" theWord="` + transcriptArr[i] + `" title="Save Word"></i>
+                                </div>
+                            </div> `;
+
+                        }
+
+                    }
+
+                });
+                $('#' + targetId).html(sentenceTwo);
+
+            }, 3000);
+
+
+
+        }
+
+
+        function showEnglish(targetId) {
+
+            // Get already stored transcript fetched on page load
+            let tTranscripts = JSON.parse(localStorage.getItem(targetId));
+
+
+
+            // Run the visibilty test
+
+            if ($('#' + targetId).hasClass('hide')) {
+                $('#' + targetId).removeClass('hide')
+                $('#' + targetId).addClass('show');
+                $('#' + targetId).append('<hr>');
+            } else {
+                $('#' + targetId).removeClass('show')
+                $('#' + targetId).addClass('hide')
+
+            }
+
+            // Filter through the array of transcripts and display the corresponding one
+            setInterval(function() {
+                $.each(tTranscripts, function(index, obj) {
+
+
+                    if (parseFloat(obj.startTime) < player.getCurrentTime() && parseFloat(obj.endTime) > player.getCurrentTime()) {
+                        sentenceThree = '';
+
+                        // explode transcript to seperate each words
+                        let transcriptArr = obj.transcript.split(" ");
+
+
+
+
+                        for (i = 0; i < transcriptArr.length; i++) {
+
+                            sentenceThree += '<span class="transcriptText">' + transcriptArr[i] + '</span> ';
+
+
+                        }
+
+                    }
+
+
+                });
+                $('#' + targetId).html(sentenceThree);
+
+            }, 3000);
+
+
+
+        }
+
+
+
+
+        function dropContent(element) {
+
+            if ($(element).hasClass('closed')) {
+                $(element).addClass('open').removeClass('closed');
+                $(element).siblings('.content').slideDown(200);
+            } else {
+                $(element).addClass('closed').removeClass('open');
+                $(element).siblings('.content').slideUp(200);
+            }
+        }
+
+        $('.akk-item .title').click(function() {
+
+            if ($(this).hasClass('closed')) {
+                $(this).addClass('open').removeClass('closed');
+                $(this).siblings('.content').slideDown(200);
+            } else {
+                $(this).addClass('closed').removeClass('open');
+                $(this).siblings('.content').slideUp(200);
+            }
+        });
+
+
+
+
+
+        $("#dropdownMenu1").removeClass('hide');
+        $("#dropdownMenu2").removeClass('hide');
+        $("#dropdownMenu3").removeClass('hide');
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            $("#dropdownMenu1").removeClass('hide');
+            $("#dropdownMenu2").removeClass('hide');
+
+
+
+            $('.akk-item .title').click(function() {
+                if ($(this).hasClass('closed')) {
+                    $(this).addClass('open').removeClass('closed');
+                    $(this).siblings('.content').slideDown(200);
+                } else {
+                    $(this).addClass('closed').removeClass('open');
+                    $(this).siblings('.content').slideUp(200);
+                }
+            });
+
+
         });
     </script>
+    <script>
+        $(".volume-chooser").on("input", ".volume", function(e) {
+            var volume = $(e.currentTarget).val();
+            $(".volume-value").text(volume);
+        });
+
+
+        $('.dropdown-toggle').click(function(e) {
+            if ($(document).width() > 768) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+
+
+                if (url !== '#') {
+
+                    // window.location.href = url;
+                }
+
+            }
+        });
+    </script>
+
+
+
 </body>
 
 </html>
